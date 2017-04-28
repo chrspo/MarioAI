@@ -27,6 +27,9 @@
 
 package ch.idsia.benchmark.mario;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ch.idsia.agents.IAgent;
 import ch.idsia.agents.controllers.keyboard.CheaterKeyboardAgent;
 import ch.idsia.benchmark.mario.engine.SimulatorOptions;
@@ -37,9 +40,6 @@ import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 import ch.idsia.benchmark.mario.options.FastOpts;
 import ch.idsia.benchmark.mario.options.MarioOptions;
 import ch.idsia.tools.EvaluationInfo;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Wraps execution of concrete {@link IAgent} within {@link MarioEnvironment} using preset {@link MarioOptions}, which are combined
@@ -114,6 +114,7 @@ public class MarioSimulator {
 			agent.receiveReward(environment.getIntermediateReward());
 		}
 		
+		log.debug("[MarioSimulator] Current IntermediateReward: " + agent.getIntermediateReward());
 		log.debug("[MarioSimulator] SIMULATION ENDED!");
 		
 		EvaluationInfo result = environment.getEvaluationInfo();
